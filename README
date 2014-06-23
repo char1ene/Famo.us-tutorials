@@ -1,0 +1,6 @@
+bounce
+	Utilized Famo.us spring transition to create a bouncing basketball.
+
+roll
+	Drag area around, not directly on, the flower left and right to see it
+	roll. Releasing the mouse will let the flower go back to its origin.
