@@ -10,7 +10,6 @@ define(function (require, exports, module) {
     // create the main context
     var mainContext = Engine.createContext();
 
-
     var stars = [{speed : 0.2, origin : [ 0.6, 1.3]},
         {speed : 0.3, origin : [ 0.4, 1.4]},
         {speed : 0.6, origin : [ 0.2, 1.5]},
