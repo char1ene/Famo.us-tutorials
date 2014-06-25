@@ -13,4 +13,3 @@ random
 
 shooting stars
 	Refactored version of random utilizing _.bind in the Underscore library 	to avoid closure
-
