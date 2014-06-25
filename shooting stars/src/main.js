@@ -27,7 +27,7 @@ define(function (require, exports, module) {
         // star image
         var star = new Surface({
             size: [100,100],
-            content: '<div class="fa fa-star-o fa-3x"></div>'
+            content: '<div class="fa fa-star-o fa-3x fa-inverse"></div>'
         });
 
         var initialTime = Date.now();
