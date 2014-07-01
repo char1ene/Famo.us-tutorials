@@ -27,15 +27,14 @@ define(function (require, exports, module) {
         Engine.on('keydown', function(){
             this.curDirection = 0;
 
-//            if (j == 3) {j = 0;}
-//            else {j++;}
-//
+            if (this.curDirection == 3) {this.curDirection = 0;}
+            else {this.curDirection++;}
+
 //            newInitTime = Date.now();
 //            w = directions[j].w;
 //            x = directions[j].x;
 //            y = directions[j].y;
 //            z = directions[j].z;
-//            d = -1;
 
         });
 
@@ -46,7 +45,6 @@ define(function (require, exports, module) {
 
     StarView.DEFAULT_OPTIONS = {
         size: [500, 500]
-        //filmBorder: 15
     };
 
     function _createBackground(){
@@ -57,7 +55,6 @@ define(function (require, exports, module) {
         });
         this.mainNode.add(this.background);
     }
-
 
     function _createStars(){
 
@@ -81,6 +78,18 @@ define(function (require, exports, module) {
             {w: 0,   x: 1.5,   y: 0,   z: 0}
         ];
 
+                var w = 0;
+                var x = 0;
+                var y = 0;
+                var z = 0;
+                var j = -1;
+                var newInitTime=0;
+//
+//        newInitTime = Date.now();
+//        w = directions[j].w;
+//        x = directions[j].x;
+//        y = directions[j].y;
+//        z = directions[j].z;
 
         for (var i = 0; i < stars.length; i++) {
 
@@ -91,29 +100,20 @@ define(function (require, exports, module) {
             });
 
             var initTime = Date.now();
+            var myFunc = _.bind(func, this, i);
             var animate = new Modifier({
                 origin: stars[i].origin,
-                transform: getStarTransformFunc(i)
+                transform: myFunc
             });
 
 
-            function getStarTransformFunc(index){
-                var w = 0;
-                var x = 0;
-                var y = 0;
-                var z = 0;
-                var j = -1;
-                var newInitTime=0;
-
-
-                return function(){
+            function func(index){
                     return Transform.translate(
-//                        (stars[index].speed * ( Date.now()  - (initTime - x*(newInitTime - Date.now())) ))%600,
-                          (stars[index].speed * (Date.now() - initTime) )%600,
-                          (stars[index].speed * (initTime - Date.now()) )%600,
-//                        (stars[index].speed * (initTime - (Date.now() - w*(Date.now() - newInitTime)) ))%600,
+                        (stars[index].speed * ( Date.now()  - (initTime - x*(newInitTime - Date.now())) ))%600,
+//                          (stars[index].speed * (Date.now() - initTime) )%600,
+//                          (stars[index].speed * (initTime - Date.now()) )%600,
+                        (stars[index].speed * (initTime - (Date.now() - w*(Date.now() - newInitTime)) ))%600,
                           0);
-                }
             }
 
             this.mainNode.add(animate).add(star);
