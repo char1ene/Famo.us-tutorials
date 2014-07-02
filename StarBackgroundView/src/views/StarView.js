@@ -22,6 +22,19 @@ define(function (require, exports, module) {
         _createBackground.call(this);
         _createStars.call(this);
 
+        var x = 0;
+        var directions = [ 4, 2, 1.33, 1, 1.3, 2, 4, 0.01, 0.55, 0.66, 0.8, 0.66, 0.55, 0.01 ];
+
+        Engine.on('keydown', function() {
+            if (x == 14) {x = 0}
+            this.rootModifier.setTransform(
+                Transform.rotateZ(Math.PI/directions[x]),
+                {duration: 8000}
+            );
+
+            x++;
+        }.bind(this));
+
     } // StarView
 
     StarView.prototype = Object.create(View.prototype);
@@ -34,7 +47,7 @@ define(function (require, exports, module) {
     function _createBackground(){
         this.background = new Surface({
             properties: {
-                backgroundColor: '#7094B8'
+                backgroundColor: '#1F517A'
             }
         });
         this.mainNode.add(this.background);
@@ -71,7 +84,6 @@ define(function (require, exports, module) {
                 origin: stars[i].origin,
                 transform: myFunc
             });
-
 
             function func(index){
                 return Transform.translate(
